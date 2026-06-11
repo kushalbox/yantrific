@@ -20,7 +20,7 @@ p{margin:0}
 
 .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .nav__inner{max-width:var(--wrap);margin:0 auto;padding:13px 24px;display:flex;align-items:center;gap:24px}
-.nav__brand img{height:34px;width:auto}
+.nav__brand img{height:44px;width:auto}
 .nav__links{display:flex;gap:28px;margin-left:auto;font-size:15px;font-weight:500}
 .nav__links a:hover{color:var(--blue)}
 
@@ -91,7 +91,7 @@ p{margin:0}
 
 .footer{background:#06122e;color:#9fb4e6;padding:38px 0}
 .footer__inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.footer__logo{height:28px;width:auto;filter:brightness(0) invert(1);opacity:.92}
+.footer__logo{height:40px;width:auto;filter:brightness(0) invert(1);opacity:.92}
 .footer__copy{font-size:14px}
 
 @media(max-width:900px){
