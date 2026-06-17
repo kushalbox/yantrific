@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 36" fill="none">
-  <text x="0" y="26" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="22" letter-spacing="-.02em" fill="#201515">y</text>
-  <text x="14" y="26" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="22" letter-spacing="-.02em" fill="#FF4F00">a</text>
-  <text x="28" y="26" font-family="Inter,system-ui,sans-serif" font-weight="600" font-size="22" letter-spacing="-.02em" fill="#201515">ntrific</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <rect width="48" height="48" rx="10" fill="#FF4F00"/>
+  <text x="24" y="33" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="28" fill="#FFFEFB">Y</text>
 </svg>
