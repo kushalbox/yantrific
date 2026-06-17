@@ -1,140 +1,180 @@
 import { useState, useEffect, useCallback } from 'react';
 
 const CHARS = '!@#$%^&*_+-=[]{}|;:<>?/~';
-const DIGITS = '0123456789';
 
-const STEPS = [
-  { tag: 'SCAN', lines: [
-    'scanning business logic layers...',
-    'indexing process topology · 142 nodes',
-    '✓ knowledge graph complete',
-  ]},
-  { tag: 'ANALYZE', lines: [
-    'running inference on 4 candidates...',
-    'customer support · 65% improvement',
-    'document intelligence · 80% faster',
-    'demand forecasting · 22% reduction',
-  ]},
-  { tag: 'PROJECT', lines: [
-    'simulating ROI scenarios...',
-    '✓ 4.2× projected within 12 months',
-    '✓ plan delivered to your team',
-  ]},
+const TABS = ['SCRAPE', 'SEARCH', 'MAP'];
+const FORMATS = ['.JSON', '.MD'];
+
+const JSON_DATA = [
+  [
+    { k: '"url"', v: '"https://acme-corp.com/api"' },
+    { k: '"title"', v: '"Yantrific · AI Consulting"' },
+    { k: '"markdown"', v: '"# AI strategy to production..."' },
+    { k: '"score"', v: '0.97' },
+    { k: '"tokens"', v: '1,247' },
+  ],
+  [
+    { k: '"url"', v: '"https://docs.acme-corp.com"' },
+    { k: '"title"', v: '"AI Implementation Guide"' },
+    { k: '"markdown"', v: '"# Getting started with AI..."' },
+    { k: '"score"', v: '0.94' },
+    { k: '"tokens"', v: '892' },
+  ],
+  [
+    { k: '"url"', v: '"https://acme-corp.com/blog"' },
+    { k: '"title"', v: '"AI in Production · Case Study"' },
+    { k: '"markdown"', v: '"How we reduced costs by 40%..."' },
+    { k: '"score"', v: '0.91' },
+    { k: '"tokens"', v: '2,103' },
+  ],
 ];
 
-function randomFrom(str) {
-  return str[Math.floor(Math.random() * str.length)];
+function randomChar() {
+  return CHARS[Math.floor(Math.random() * CHARS.length)];
 }
 
-function Scramble({ text, done, fast }) {
-  const [display, setDisplay] = useState(
-    text.split('').map(() => randomFrom(CHARS)).join('')
-  );
+function Scramble({ text, speed, done }) {
+  const [display, setDisplay] = useState('');
+  const [resolved, setResolved] = useState(false);
 
   useEffect(() => {
     if (done) {
       setDisplay(text);
+      setResolved(true);
       return;
     }
-    const interval = fast ? 25 : 50;
+    setResolved(false);
+    const chars = text.split('');
+    let frame = 0;
+    const rate = speed || 30;
+    const totalFrames = chars.length * 2 + 15;
     const id = setInterval(() => {
-      setDisplay(prev =>
-        prev.split('').map((ch, i) => {
-          if (text[i] === ' ' || text[i] === '·' || text[i] === '─') return text[i];
-          const threshold = Math.min(1, (i / text.length) * 1.3 + 0.1);
-          if (Math.random() < threshold) return text[i];
-          return randomFrom(CHARS);
+      frame++;
+      setDisplay(
+        chars.map((ch, i) => {
+          if (ch === ' ' || ch === ':' || ch === ',' || ch === '.' || ch === '-' || ch === '/') return ch;
+          const progress = frame / totalFrames;
+          const threshold = Math.min(0.95, (i / chars.length) * 1.2 + 0.1);
+          if (progress >= threshold) return ch;
+          return randomChar();
         }).join('')
       );
-    }, interval);
+      if (frame >= totalFrames) {
+        setDisplay(text);
+        setResolved(true);
+        clearInterval(id);
+      }
+    }, rate);
     return () => clearInterval(id);
-  }, [text, done, fast]);
+  }, [text, speed, done]);
 
-  return <span>{display}</span>;
+  return <span className={resolved ? 'scramble--done' : ''}>{display}</span>;
 }
 
-function NumberStream() {
-  const [cols] = useState(() =>
-    Array.from({ length: 16 }, () => Math.floor(Math.random() * 8))
-  );
+function Line({ data, active }) {
   return (
-    <div className="num-stream">
-      {cols.map((offset, i) => (
-        <span key={i} className="num-stream__col" style={{ animationDelay: `${offset * 0.15}s` }}>
-          {Array.from({ length: 6 }, (_, j) => (
-            <span key={j}>{randomFrom(DIGITS)}</span>
-          ))}
-        </span>
+    <div className={`code-line ${active ? 'code-line--active' : ''}`}>
+      <span className="code-line__num">{data.i}</span>
+      <span className="code-line__bracket">{'  {'}</span>
+      {data.fields.map((f, j) => (
+        <div key={j} className="code-line__field">
+          <span className="code-line__key">{active ? <Scramble text={f.k} speed={20} /> : f.k}</span>
+          <span className="code-line__sep">: </span>
+          <span className="code-line__val">{active ? <Scramble text={f.v} speed={25} /> : f.v}</span>
+          {j < data.fields.length - 1 && <span className="code-line__comma">,</span>}
+        </div>
       ))}
+      <span className="code-line__bracket">{'  }'}</span>
     </div>
   );
 }
 
 export default function TerminalDemo() {
-  const [step, setStep] = useState(0);
-  const [lineIdx, setLineIdx] = useState(0);
-  const [lineDone, setLineDone] = useState(false);
-  const [phase, setPhase] = useState('scramble');
+  const [tab, setTab] = useState(0);
+  const [format, setFormat] = useState(0);
+  const [phase, setPhase] = useState('scrambling');
+  const [activeLine, setActiveLine] = useState(null);
+  const [done, setDone] = useState(false);
 
-  const current = STEPS[step];
-
-  const advanceLine = useCallback(() => {
-    if (!current) return;
-    if (lineIdx >= current.lines.length) {
-      const t = setTimeout(() => {
-        setStep(s => (s + 1) % STEPS.length);
-        setLineIdx(0);
-        setLineDone(false);
-        setPhase('scramble');
-      }, 1200);
-      return () => clearTimeout(t);
-    }
-    setPhase('scramble');
-    setLineDone(false);
-    const t = setTimeout(() => {
-      setLineDone(true);
+  const runDemo = useCallback(() => {
+    setPhase('scrambling');
+    setActiveLine(null);
+    setDone(false);
+    let lineIdx = 0;
+    const lines = JSON_DATA.length;
+    const t1 = setInterval(() => {
+      if (lineIdx < lines) {
+        setActiveLine(lineIdx);
+        lineIdx++;
+      } else {
+        clearInterval(t1);
+        setTimeout(() => {
+          setDone(true);
+          setActiveLine(null);
+        }, 500);
+      }
+    }, 600);
+    const totalTime = lines * 600 + 800;
+    setTimeout(() => {
       setPhase('done');
-      const t2 = setTimeout(() => {
-        setLineIdx(i => i + 1);
-      }, 400);
-      return () => clearTimeout(t2);
-    }, current.lines[lineIdx].length * 25 + 400);
-    return () => clearTimeout(t);
-  }, [step, lineIdx, current]);
+      setTimeout(() => {
+        setTab(t => (t + 1) % TABS.length);
+        setFormat(f => (f + 1) % FORMATS.length);
+      }, 1500);
+    }, totalTime);
+  }, []);
 
   useEffect(() => {
-    if (current) advanceLine();
-  }, [lineIdx, step, current, advanceLine]);
+    const t = setTimeout(runDemo, 400);
+    return () => clearTimeout(t);
+  }, [runDemo]);
+
+  useEffect(() => {
+    if (phase === 'done') {
+      const t = setTimeout(runDemo, 1800);
+      return () => clearTimeout(t);
+    }
+  }, [phase, runDemo]);
+
+  const lines = JSON_DATA.map((fields, i) => ({
+    i: i + 1,
+    fields,
+  }));
 
   return (
-    <div className="ai-panel">
-      <div className="ai-panel__glow" />
-      <NumberStream />
-      <div className="ai-panel__body">
-        <div className="ai-panel__bar">
-          <span className="ai-panel__indicator" />
-          <span className="ai-panel__tag">{current?.tag || 'READY'}</span>
-          <span className="ai-panel__divider">|</span>
-          <span className="ai-panel__agent">yantrific ai</span>
-        </div>
-        <div className="ai-panel__lines">
-          {current?.lines.slice(0, lineIdx).map((l, i) => (
-            <div key={i} className="ai-panel__line ai-panel__line--done">
-              {l.startsWith('✓') ? '✓' : '▸'} {l.slice(2)}
-            </div>
+    <div className="term">
+      <div className="term__bar">
+        <span className="term__dot" />
+        <span className="term__tab">
+          {TABS.map((t, i) => (
+            <span key={t} className={`term__tab-item ${i === tab ? 'term__tab-item--active' : ''}`}>
+              [ {t} ]
+            </span>
           ))}
-          {current && lineIdx < current.lines.length && (
-            <div className="ai-panel__line ai-panel__line--active">
-              <span className="ai-panel__arrow">▸</span>{' '}
-              {phase === 'done' ? (
-                <span>{current.lines[lineIdx].slice(2)}</span>
-              ) : (
-                <Scramble text={current.lines[lineIdx].slice(2)} done={false} fast />
-              )}
-            </div>
+        </span>
+        <span className="term__format">
+          {FORMATS.map((f, i) => (
+            <span key={f} className={`term__fmt ${i === format ? 'term__fmt--active' : ''}`}>{f}</span>
+          ))}
+        </span>
+      </div>
+      <div className="term__body">
+        <div className="term__status">
+          <span className="term__indicator" />
+          {phase === 'scrambling' ? (
+            <span className="term__status-text"><Scramble text="Analyzing business processes..." speed={25} /></span>
+          ) : (
+            <span className="term__status-text term__status-text--ok">200 OK · 3 results</span>
           )}
-          <div className="ai-panel__cursor" />
         </div>
+        <div className="term__code">
+          <span className="code-line__bracket">[</span>
+          {lines.map((l, i) => (
+            <Line key={i} data={l} active={activeLine === i} />
+          ))}
+          <span className="code-line__bracket">]</span>
+        </div>
+        <div className="term__cursor" />
       </div>
     </div>
   );
