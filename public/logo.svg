@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
-  <rect width="48" height="48" rx="10" fill="#FF4F00"/>
-  <text x="24" y="34" text-anchor="middle" font-family="'EB Garamond',Georgia,serif" font-weight="700" font-size="30" fill="#FFFEFB">Y</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 52" fill="none">
+  <rect x="2" y="2" width="48" height="48" rx="10" stroke="#201515" stroke-width="3" fill="none"/>
+  <text x="26" y="37" text-anchor="middle" font-family="'EB Garamond',Georgia,serif" font-weight="700" font-size="32" fill="#FF4F00">Y</text>
+  <text x="66" y="36" font-family="'EB Garamond',Georgia,serif" font-weight="600" font-size="28" fill="#201515">antrific</text>
 </svg>
