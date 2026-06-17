@@ -1,4 +1,4 @@
-const LOGO_SRC = '/logo.png';
+const LOGO_SRC = '/logo.svg';
 
 const SERVICES = [
   { n: "01", t: "AI Strategy & Roadmapping", d: "Opportunity audit, use-case prioritisation by impact vs. effort, build-vs-buy analysis, and a funded, board-ready roadmap with clear KPIs and ownership." },
