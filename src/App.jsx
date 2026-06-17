@@ -1,3 +1,5 @@
+import DataFlow from './DataFlow.jsx';
+
 const LOGO_SRC = '/logo.svg';
 
 const SERVICES = [
@@ -57,12 +59,17 @@ function Hero() {
   return (
     <section className="hero" id="top">
       <div className="hero__inner">
-        <span className="eyebrow">AI Consulting</span>
-        <h1 className="hero__title">Artificial intelligence,<br />delivered into production.</h1>
-        <p className="hero__sub">From fast-moving startups to large enterprises, Yantrific helps organizations move AI from slide decks and proofs-of-concept into production systems that deliver measurable results, built responsibly and owned by your team.</p>
-        <div className="hero__cta">
-          <a className="btn btn--primary btn--lg" href="#contact">Start a conversation</a>
-          <a className="btn btn--ghost btn--lg" href="#approach">See how we work</a>
+        <div className="hero__content">
+          <span className="eyebrow">AI Consulting</span>
+          <h1 className="hero__title">Artificial intelligence,<br />delivered into production.</h1>
+          <p className="hero__sub">From fast-moving startups to large enterprises, Yantrific helps organizations move AI from slide decks and proofs-of-concept into production systems that deliver measurable results, built responsibly and owned by your team.</p>
+          <div className="hero__cta">
+            <a className="btn btn--primary btn--lg" href="#contact">Start a conversation</a>
+            <a className="btn btn--ghost btn--lg" href="#approach">See how we work</a>
+          </div>
+        </div>
+        <div className="hero__demo">
+          <DataFlow />
         </div>
       </div>
     </section>

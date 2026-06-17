@@ -39,8 +39,10 @@ p{margin:0}
 .btn--lg{padding:14px 28px;font-size:17px}
 
 .hero{padding:104px 0 88px;background:var(--canvas)}
-.hero__inner{max-width:var(--wrap);margin:0 auto;padding:0 48px}
-.hero__title{font-family:var(--display);font-size:clamp(38px,5vw,56px);font-weight:600;letter-spacing:-.02em;line-height:1.08;margin:20px 0 0;max-width:800px}
+.hero__inner{max-width:var(--wrap);margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero__content{max-width:600px}
+.hero__demo{display:flex;justify-content:center}
+.hero__title{font-family:var(--display);font-size:clamp(38px,5vw,56px);font-weight:600;letter-spacing:-.02em;line-height:1.08;margin:20px 0 0}
 .hero__sub{margin-top:24px;font-size:clamp(17px,2vw,20px);color:var(--body);max-width:660px;line-height:1.65}
 .hero__cta{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap}
 
@@ -99,6 +101,37 @@ p{margin:0}
 .footer__logo{height:28px;width:auto;filter:brightness(0) invert(1);opacity:.85}
 .footer__copy{font-size:14px;color:var(--mute)}
 
+.data-panel{background:#0d0b09;border:1px solid rgba(255,79,0,.12);border-radius:12px;overflow:hidden;font-family:'GeistMono','SFMono-Regular',Menlo,Consolas,monospace;max-width:560px;width:100%;position:relative;min-height:340px}
+.data-panel__bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(255,79,0,.04),transparent 65%);pointer-events:none}
+.data-panel__inner{position:relative;z-index:1;padding:24px;display:flex;flex-direction:column;align-items:center;gap:20px}
+
+.flow-ring{position:relative;width:160px;height:160px;display:flex;align-items:center;justify-content:center;margin:8px 0}
+.flow-ring__glow{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(255,79,0,.15),transparent 60%);animation:glow-pulse 3s ease-in-out infinite}
+@keyframes glow-pulse{0%,to{opacity:.6;transform:scale(.95)}50%{opacity:1;transform:scale(1.05)}}
+.flow-ring__center{position:relative;width:56px;height:56px;display:flex;align-items:center;justify-content:center}
+.flow-ring__pulse{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,79,0,.25);animation:ring-expand 2.5s ease-out infinite}
+.flow-ring__pulse--2{animation-delay:.8s}
+.flow-ring__pulse--3{animation-delay:1.6s}
+@keyframes ring-expand{0%{transform:scale(.8);opacity:1}100%{transform:scale(1.8);opacity:0}}
+.flow-ring__label{font-size:18px;font-weight:600;color:var(--primary);font-family:var(--font);letter-spacing:.08em}
+.flow-ring__char{position:absolute;left:50%;top:50%;width:0;height:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,79,0,.7);animation:char-fade 1.5s ease-in-out infinite}
+@keyframes char-fade{0%,to{opacity:.3}50%{opacity:1}}
+
+.data-panel__info{text-align:center;width:100%}
+.data-panel__status{display:flex;align-items:center;justify-content:center;gap:8px;font-size:11px;color:rgba(255,255,255,.4);margin-bottom:14px}
+.data-panel__dot{width:5px;height:5px;border-radius:50%;background:var(--primary);animation:dot-pulse 1.2s infinite;flex-shrink:0}
+@keyframes dot-pulse{0%,to{opacity:1;box-shadow:0 0 4px rgba(255,79,0,.4)}50%{opacity:.3;box-shadow:0 0 10px rgba(255,79,0,.8)}}
+.data-panel__metrics{display:flex;justify-content:center;gap:28px}
+.data-panel__metric{text-align:center}
+.data-panel__value{font-size:18px;font-weight:600;color:#f0e8d8}
+.data-panel__unit{font-size:12px;color:var(--primary);margin-left:2px}
+.data-panel__label{display:block;font-size:10px;color:rgba(255,255,255,.3);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+
+.data-stream{display:flex;flex-direction:column;gap:4px;width:100%;opacity:.08;position:absolute;bottom:16px;left:16px;right:16px;pointer-events:none}
+.data-stream__line{display:flex;gap:3px;flex-wrap:wrap;animation:stream-drift 2s ease-in-out infinite alternate}
+@keyframes stream-drift{0%{transform:translateX(0)}100%{transform:translateX(-8px)}}
+.data-stream__char{font-size:8px;color:var(--primary)}
+
 @media(max-width:900px){
   .grid--3{grid-template-columns:repeat(2,1fr)}
   .grid--4{grid-template-columns:repeat(2,1fr)}
@@ -106,6 +139,8 @@ p{margin:0}
   .stats__inner{grid-template-columns:1fr;gap:24px}
   .nav__links{display:none}
   .hero{padding:72px 0}
+  .hero__inner{grid-template-columns:1fr;gap:40px}
+  .hero__content{max-width:100%}
 }
 @media(max-width:640px){
   .wrap{padding:0 24px}
