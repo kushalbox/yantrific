@@ -206,16 +206,34 @@ function Footer() {
   );
 }
 
+function WaveDivider() {
+  return (
+    <div className="wave-section" aria-hidden="true">
+      <div className="wave">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+          <path className="wave__path" d="M0,30 C360,55 720,5 1080,30 C1260,42 1350,35 1440,30 L1440,60 L0,60 Z" fill="var(--canvas-soft)" />
+          <path className="wave__path wave__path--2" d="M0,35 C240,50 480,20 720,35 C960,50 1200,20 1440,35 L1440,60 L0,60 Z" fill="var(--canvas)" opacity=".5" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   return (
     <>
       <Nav />
       <main>
         <Hero />
+        <WaveDivider />
         <Stats />
+        <WaveDivider />
         <Services />
+        <WaveDivider />
         <Approach />
+        <WaveDivider />
         <Industries />
+        <WaveDivider />
         <FAQ />
         <Contact />
       </main>

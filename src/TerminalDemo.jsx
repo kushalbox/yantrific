@@ -1,132 +1,140 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const CHARS = '!@#$%^&*()_+-=[]{}|;:,.<>?/`~abcdefghijklmnopqrstuvwxyz0123456789';
+const CHARS = '!@#$%^&*_+-=[]{}|;:<>?/~';
+const DIGITS = '0123456789';
 
-const LINES = [
-  { cmd: 'yantrific assess --domain acme-corp', delay: 600 },
-  { cmd: '', text: 'Scanning business processes...', delay: 300 },
-  { cmd: '', text: '3 high-impact AI opportunities identified', ok: true, delay: 200 },
-  { cmd: '', text: '└─ Customer support automation · 65% faster resolution', delay: 100 },
-  { cmd: '', text: '└─ Document intelligence · 80% faster extraction', delay: 100 },
-  { cmd: '', text: '└─ Demand forecasting · 22% inventory reduction', delay: 100 },
-  { cmd: '', text: 'Building implementation roadmap...', delay: 400 },
-  { cmd: '', text: 'ROI projected · 4.2× within 12 months', ok: true, delay: 200 },
-  { cmd: '', text: 'Ready. Ownership transfers to your team.', delay: 100 },
+const STEPS = [
+  { tag: 'SCAN', lines: [
+    'scanning business logic layers...',
+    'indexing process topology · 142 nodes',
+    '✓ knowledge graph complete',
+  ]},
+  { tag: 'ANALYZE', lines: [
+    'running inference on 4 candidates...',
+    'customer support · 65% improvement',
+    'document intelligence · 80% faster',
+    'demand forecasting · 22% reduction',
+  ]},
+  { tag: 'PROJECT', lines: [
+    'simulating ROI scenarios...',
+    '✓ 4.2× projected within 12 months',
+    '✓ plan delivered to your team',
+  ]},
 ];
 
-function scrambleText(text, progress) {
-  return text.split('').map((ch, i) => {
-    if (ch === ' ') return ' ';
-    const threshold = Math.min(1, (i / text.length) * 1.2 + 0.15);
-    if (progress >= threshold) return ch;
-    return CHARS[Math.floor(Math.random() * CHARS.length)];
-  }).join('');
+function randomFrom(str) {
+  return str[Math.floor(Math.random() * str.length)];
 }
 
-function TypeChar({ char, done }) {
-  const [display, setDisplay] = useState(done ? char : CHARS[Math.floor(Math.random() * CHARS.length)]);
+function Scramble({ text, done, fast }) {
+  const [display, setDisplay] = useState(
+    text.split('').map(() => randomFrom(CHARS)).join('')
+  );
 
   useEffect(() => {
     if (done) {
-      setDisplay(char);
+      setDisplay(text);
       return;
     }
+    const interval = fast ? 25 : 50;
     const id = setInterval(() => {
-      setDisplay(CHARS[Math.floor(Math.random() * CHARS.length)]);
-    }, 50);
+      setDisplay(prev =>
+        prev.split('').map((ch, i) => {
+          if (text[i] === ' ' || text[i] === '·' || text[i] === '─') return text[i];
+          const threshold = Math.min(1, (i / text.length) * 1.3 + 0.1);
+          if (Math.random() < threshold) return text[i];
+          return randomFrom(CHARS);
+        }).join('')
+      );
+    }, interval);
     return () => clearInterval(id);
-  }, [char, done]);
+  }, [text, done, fast]);
 
   return <span>{display}</span>;
 }
 
-function ScrambleLine({ text, done }) {
+function NumberStream() {
+  const [cols] = useState(() =>
+    Array.from({ length: 16 }, () => Math.floor(Math.random() * 8))
+  );
   return (
-    <span>
-      {text.split('').map((ch, i) => (
-        <TypeChar key={i} char={ch} done={done} />
+    <div className="num-stream">
+      {cols.map((offset, i) => (
+        <span key={i} className="num-stream__col" style={{ animationDelay: `${offset * 0.15}s` }}>
+          {Array.from({ length: 6 }, (_, j) => (
+            <span key={j}>{randomFrom(DIGITS)}</span>
+          ))}
+        </span>
       ))}
-    </span>
+    </div>
   );
 }
 
-function Cursor() {
-  return <span className="cursor">▊</span>;
-}
-
 export default function TerminalDemo() {
-  const [visibleLines, setVisibleLines] = useState([]);
-  const [lineProgression, setLineProgression] = useState({});
+  const [step, setStep] = useState(0);
+  const [lineIdx, setLineIdx] = useState(0);
+  const [lineDone, setLineDone] = useState(false);
+  const [phase, setPhase] = useState('scramble');
 
-  const advance = useCallback(() => {
-    setVisibleLines(prev => {
-      if (prev.length >= LINES.length) {
-        setTimeout(() => {
-          setVisibleLines([]);
-          setLineProgression({});
-        }, 3000);
-        return prev;
-      }
-      const idx = prev.length;
-      const line = LINES[idx];
-      const next = [...prev, idx];
-      if (line.text) {
-        setLineProgression(p => ({ ...p, [idx]: { scramble: true, done: false, ok: line.ok } }));
-        setTimeout(() => {
-          setLineProgression(p => ({ ...p, [idx]: { ...p[idx], done: true } }));
-        }, line.text.length * 40 + 400);
-      } else if (line.cmd) {
-        setLineProgression(p => ({ ...p, [idx]: { cmd: true, done: false } }));
-        setTimeout(() => {
-          setLineProgression(p => ({ ...p, [idx]: { ...p[idx], done: true } }));
-        }, line.cmd.length * 50 + 600);
-      }
-      setTimeout(advance, line.delay + 300);
-      return next;
-    });
-  }, []);
+  const current = STEPS[step];
+
+  const advanceLine = useCallback(() => {
+    if (!current) return;
+    if (lineIdx >= current.lines.length) {
+      const t = setTimeout(() => {
+        setStep(s => (s + 1) % STEPS.length);
+        setLineIdx(0);
+        setLineDone(false);
+        setPhase('scramble');
+      }, 1200);
+      return () => clearTimeout(t);
+    }
+    setPhase('scramble');
+    setLineDone(false);
+    const t = setTimeout(() => {
+      setLineDone(true);
+      setPhase('done');
+      const t2 = setTimeout(() => {
+        setLineIdx(i => i + 1);
+      }, 400);
+      return () => clearTimeout(t2);
+    }, current.lines[lineIdx].length * 25 + 400);
+    return () => clearTimeout(t);
+  }, [step, lineIdx, current]);
 
   useEffect(() => {
-    const t = setTimeout(advance, 500);
-    return () => clearTimeout(t);
-  }, [advance]);
+    if (current) advanceLine();
+  }, [lineIdx, step, current, advanceLine]);
 
   return (
-    <div className="terminal">
-      <div className="terminal__bar">
-        <span className="terminal__dot terminal__dot--red" />
-        <span className="terminal__dot terminal__dot--yellow" />
-        <span className="terminal__dot terminal__dot--green" />
-        <span className="terminal__label">yantrific — ai assessor</span>
-      </div>
-      <div className="terminal__body">
-        {visibleLines.map((idx) => {
-          const line = LINES[idx];
-          const state = lineProgression[idx] || {};
-          return (
-            <div key={idx} className="terminal__line">
-              {state.cmd ? (
-                <span className="terminal__prompt">
-                  <span className="terminal__dollar">$</span>{' '}
-                  {state.done ? (
-                    <span className="terminal__cmd">{line.cmd}</span>
-                  ) : (
-                    <ScrambleLine text={line.cmd} done={false} />
-                  )}
-                </span>
-              ) : state.scramble ? (
-                <span className={state.ok ? 'terminal__ok' : ''}>
-                  {state.done ? (
-                    <span>{line.text}</span>
-                  ) : (
-                    <ScrambleLine text={line.text} done={false} />
-                  )}
-                </span>
-              ) : null}
+    <div className="ai-panel">
+      <div className="ai-panel__glow" />
+      <NumberStream />
+      <div className="ai-panel__body">
+        <div className="ai-panel__bar">
+          <span className="ai-panel__indicator" />
+          <span className="ai-panel__tag">{current?.tag || 'READY'}</span>
+          <span className="ai-panel__divider">|</span>
+          <span className="ai-panel__agent">yantrific ai</span>
+        </div>
+        <div className="ai-panel__lines">
+          {current?.lines.slice(0, lineIdx).map((l, i) => (
+            <div key={i} className="ai-panel__line ai-panel__line--done">
+              {l.startsWith('✓') ? '✓' : '▸'} {l.slice(2)}
             </div>
-          );
-        })}
-        <div className="terminal__line"><Cursor /></div>
+          ))}
+          {current && lineIdx < current.lines.length && (
+            <div className="ai-panel__line ai-panel__line--active">
+              <span className="ai-panel__arrow">▸</span>{' '}
+              {phase === 'done' ? (
+                <span>{current.lines[lineIdx].slice(2)}</span>
+              ) : (
+                <Scramble text={current.lines[lineIdx].slice(2)} done={false} fast />
+              )}
+            </div>
+          )}
+          <div className="ai-panel__cursor" />
+        </div>
       </div>
     </div>
   );
