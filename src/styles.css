@@ -107,7 +107,26 @@ p{margin:0}
   .nav__links{display:none}
   .hero{padding:64px 0}
 }
-@media(max-width:560px){
+@media(max-width:640px){
+  .hero__title{font-size:clamp(30px,7vw,38px)}
+  .hero__sub{font-size:17px}
+  .hero__cta{flex-direction:column}
+  .hero__cta .btn{width:100%;text-align:center}
+  .stats__inner{padding:36px 24px}
+  .section{padding:48px 0}
+  .section__head{margin-bottom:28px}
+  .grid{gap:14px}
+  .card{padding:20px}
+  .step{padding:18px 0;gap:14px}
+  .pull{font-size:18px;padding:16px 20px}
+  .contact__sub{font-size:17px}
+  .footer__inner{flex-direction:column;text-align:center;gap:12px}
+}
+@media(max-width:480px){
   .grid--3,.grid--4{grid-template-columns:1fr}
-  .section{padding:56px 0}
+  .hero__cta .btn{font-size:16px;padding:13px 24px}
+  .nav__inner{padding:10px 16px}
+  .wrap{padding:0 16px}
+  .hero__inner{padding:0 16px}
+  .stats__inner{padding:28px 16px}
 }
