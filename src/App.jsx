@@ -7,7 +7,10 @@ const SERVICES = [
   { n: "04", t: "Data & AI Infrastructure", d: "Data pipelines, vector stores, and MLOps foundations that make AI reliable, observable, and cost-efficient at scale." },
   { n: "05", t: "Responsible AI & Governance", d: "Model evaluation, bias auditing, explainability, and regulatory alignment (e.g., EU AI Act). Governance that lets you ship with confidence." },
   { n: "06", t: "AI Enablement & Operations", d: "Team upskilling, centre-of-excellence setup, monitoring, and retraining so capability persists after we hand over." },
-  { n: "\u2b50", t: "Lalmohar", d: "LLM-powered legal research and documentation for Nepal. Search judgments, navigate statutes, and manage case documents with AI. Built for advocates and law firms. Try it at lalmohar.com.", product: true },
+];
+
+const PRODUCTS = [
+  { t: "Lalmohar", d: "LLM-powered legal research and documentation for Nepal. Search judgments, navigate statutes, and manage case documents with AI. Built for advocates and law firms.", url: "https://lalmohar.com", logo: "/lalmohar.svg" },
 ];
 
 const STATS = [
@@ -61,9 +64,9 @@ function Hero() {
       <div className="hero__inner">
         <span className="eyebrow">AI Consulting &amp; Products</span>
         <h1 className="hero__title">Artificial intelligence,<br />delivered into production.</h1>
-        <p className="hero__sub">Yantrific builds custom AI systems and products. Lalmohar is an LLM-powered legal research and documentation platform for Nepal, purpose-built for advocates, law firms, and legal professionals to search judgments, navigate statutes, and manage case documents.</p>
+        <p className="hero__sub">Yantrific operates two verticals: AI consulting and products. Lalmohar is an LLM-powered legal research and documentation platform for Nepal, built for advocates, law firms, and legal professionals.</p>
         <div className="hero__cta">
-          <a className="btn btn--primary btn--lg" href="#contact">Start a conversation</a>
+          <a className="btn btn--primary btn--lg" href="#services">Explore services</a>
           <a className="btn btn--ghost btn--lg" href="https://lalmohar.com" target="_blank" rel="noopener">Try Lalmohar</a>
         </div>
       </div>
@@ -97,8 +100,8 @@ function Services() {
         </div>
         <div className="grid grid--3">
           {SERVICES.map((s) => (
-            <article className={"card" + (s.product ? " card--product" : "")} key={s.n}>
-              <div className={"card__n" + (s.product ? " card__n--product" : "")}>{s.n}</div>
+            <article className="card" key={s.n}>
+              <div className="card__n">{s.n}</div>
               <h3>{s.t}</h3>
               <p>{s.d}</p>
             </article>
@@ -109,9 +112,34 @@ function Services() {
   );
 }
 
+function Product() {
+  return (
+    <section className="section section--alt" id="product">
+      <div className="wrap">
+        <div className="section__head">
+          <span className="eyebrow">Our Product</span>
+          <h2>Built by us, for Nepal's legal community.</h2>
+        </div>
+        <div className="product-grid">
+          {PRODUCTS.map((p) => (
+            <a href={p.url} target="_blank" rel="noopener" className="product-card">
+              <div className="product-card__logo"><img src={p.logo} alt={p.t} /></div>
+              <div className="product-card__body">
+                <h3>{p.t}</h3>
+                <p>{p.d}</p>
+                <span className="product-card__link">Visit {p.t} →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Approach() {
   return (
-    <section className="section section--alt" id="approach">
+    <section className="section" id="approach">
       <div className="wrap approach">
         <div className="approach__intro">
           <span className="eyebrow">How we work</span>
@@ -209,6 +237,7 @@ function App() {
         <Hero />
         <Stats />
         <Services />
+        <Product />
         <Approach />
         <Industries />
         <FAQ />
