@@ -116,7 +116,7 @@ function ServicePage() {
             <span className="eyebrow">Service {s.n}</span>
             <h1 className="page-hero__title">{s.t}</h1>
             <p className="page-hero__sub">{s.tagline}</p>
-            <Link className="btn btn--primary btn--lg" to="/#contact">Get started</Link>
+            <a className="btn btn--primary btn--lg" href="mailto:contact@yantrific.com">Get started</a>
           </div>
         </section>
 
@@ -176,7 +176,7 @@ function ServicePage() {
             <span className="eyebrow eyebrow--light">Contact</span>
             <h2>Ready to start?</h2>
             <p className="contact__sub">Tell us about your project. We will tell you honestly whether we can help and how we would approach it.</p>
-            <Link className="btn btn--primary btn--lg" to="/#contact">Get in touch</Link>
+            <a className="btn btn--primary btn--lg" href="mailto:contact@yantrific.com">Email us</a>
             <p className="contact__loc">Jawlakhel, Lalitpur, Nepal &middot; Working with teams across South Asia &amp; beyond</p>
           </div>
         </section>

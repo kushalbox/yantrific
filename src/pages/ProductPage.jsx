@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 
@@ -28,7 +27,7 @@ function ProductPage() {
             <p className="page-hero__sub">{p.tagline}</p>
             <div className="hero__cta">
               <a className="btn btn--primary btn--lg" href="https://lalmohar.com" target="_blank" rel="noopener">Try Lalmohar</a>
-              <Link className="btn btn--ghost btn--lg" to="/#contact">Get in touch</Link>
+              <a className="btn btn--ghost btn--lg" href="mailto:contact@yantrific.com">Email us</a>
             </div>
           </div>
         </section>
@@ -68,7 +67,7 @@ function ProductPage() {
             <h2>Start using Lalmohar today.</h2>
             <p className="contact__sub">Visit lalmohar.com to create your account. Built by Yantrific. Questions? Email us directly.</p>
             <a className="btn btn--primary btn--lg" href="https://lalmohar.com" target="_blank" rel="noopener">Visit lalmohar.com</a>
-            <p className="contact__loc" style={{marginTop: "14px"}}><Link to="/#contact" style={{color:"#9fb4e6",textDecoration:"underline"}}>contact@yantrific.com</Link></p>
+            <p className="contact__loc" style={{marginTop: "14px"}}><a href="mailto:contact@yantrific.com" style={{color:"#9fb4e6",textDecoration:"underline"}}>contact@yantrific.com</a></p>
           </div>
         </section>
       </main>
