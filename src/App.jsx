@@ -7,7 +7,7 @@ const SERVICES = [
   { n: "04", t: "Data & AI Infrastructure", d: "Data pipelines, vector stores, and MLOps foundations that make AI reliable, observable, and cost-efficient at scale." },
   { n: "05", t: "Responsible AI & Governance", d: "Model evaluation, bias auditing, explainability, and regulatory alignment (e.g., EU AI Act). Governance that lets you ship with confidence." },
   { n: "06", t: "AI Enablement & Operations", d: "Team upskilling, centre-of-excellence setup, monitoring, and retraining so capability persists after we hand over." },
-  { n: "\u2b50", t: "Lalmohar", d: "AI purpose-built for Nepali law. Searches Supreme Court and High Court precedents alongside statutes, reads full text, cites ratio decidendi, flags good-law status, and shows step-by-step reasoning. Bilingual Nepali and English. Try it at lalmohar.com.", product: true },
+  { n: "\u2b50", t: "Lalmohar", d: "LLM-powered legal research and documentation for Nepal. Search judgments, navigate statutes, and manage case documents with AI. Built for advocates and law firms. Try it at lalmohar.com.", product: true },
 ];
 
 const STATS = [
@@ -61,7 +61,7 @@ function Hero() {
       <div className="hero__inner">
         <span className="eyebrow">AI Consulting &amp; Products</span>
         <h1 className="hero__title">Artificial intelligence,<br />delivered into production.</h1>
-        <p className="hero__sub">Yantrific builds custom AI systems for ambitious teams. We also built Lalmohar, an AI platform for Nepali law that searches Supreme Court and High Court precedents alongside statutes, reads every source in full, cites with ratio decidendi, flags good-law status, and works fluently in both Nepali and English.</p>
+        <p className="hero__sub">Yantrific builds custom AI systems and products. Lalmohar is an LLM-powered legal research and documentation platform for Nepal, purpose-built for advocates, law firms, and legal professionals to search judgments, navigate statutes, and manage case documents.</p>
         <div className="hero__cta">
           <a className="btn btn--primary btn--lg" href="#contact">Start a conversation</a>
           <a className="btn btn--ghost btn--lg" href="https://lalmohar.com" target="_blank" rel="noopener">Try Lalmohar</a>
