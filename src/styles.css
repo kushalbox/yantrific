@@ -51,6 +51,7 @@ p{margin:0}
 .section__lead{margin-top:14px;color:var(--muted);font-size:18px}
 
 .grid{display:grid;gap:22px}
+.grid--2{grid-template-columns:repeat(2,1fr)}
 .grid--3{grid-template-columns:repeat(3,1fr)}
 .grid--4{grid-template-columns:repeat(4,1fr)}
 .card{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:28px;transition:.2s}
@@ -95,6 +96,29 @@ p{margin:0}
 .footer__copy{font-size:14px}
 
 .product-grid{display:grid;grid-template-columns:1fr;gap:24px}
+
+.page-hero{padding:80px 0 64px;background:radial-gradient(1200px 520px at 72% -12%,rgba(1,103,255,.10),transparent 60%),var(--bg)}
+.page-hero__title{font-family:var(--serif);font-size:clamp(36px,5vw,64px);font-weight:600;letter-spacing:-.01em;margin:14px 0 0;max-width:800px}
+.page-hero__sub{margin-top:18px;font-size:clamp(17px,2vw,21px);color:var(--muted);max-width:680px}
+.page-hero .btn{margin-top:28px}
+
+.outcomes{display:grid;gap:18px}
+.outcome{display:flex;align-items:flex-start;gap:18px;padding:20px;background:var(--bg);border:1px solid var(--line);border-radius:14px}
+.outcome__icon{flex-shrink:0;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:15px}
+.outcome p{color:var(--muted);font-size:16px;padding-top:6px}
+
+.challenges{display:grid;gap:14px}
+.challenge{display:flex;align-items:flex-start;gap:18px;padding:20px 24px;background:var(--bg);border:1px solid var(--line);border-radius:14px}
+.challenge__n{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--orange);min-width:28px}
+.challenge p{font-size:16px}
+
+.result-card{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:28px;transition:.2s}
+.result-card:hover{border-color:var(--blue);box-shadow:0 14px 40px -22px rgba(1,103,255,.55);transform:translateY(-2px)}
+.result-card h3{margin:0 0 10px;font-size:20px;color:var(--blue)}
+.result-card p{color:var(--muted);font-size:15px}
+
+.about-text{font-size:18px;color:var(--muted);line-height:1.7;max-width:700px}
+.about-text p{margin:0}
 .product-card{display:flex;align-items:center;gap:28px;background:var(--bg);border:2px solid var(--blue);border-radius:16px;padding:32px;transition:.2s}
 .product-card:hover{border-color:var(--blue-deep);box-shadow:0 14px 40px -22px rgba(1,103,255,.55);transform:translateY(-2px)}
 .product-card__logo{flex-shrink:0;width:64px;height:64px;display:grid;place-items:center;border-radius:14px}
@@ -104,14 +128,14 @@ p{margin:0}
 .product-card__link{font-weight:600;color:var(--blue);font-size:15px}
 
 @media(max-width:900px){
-  .grid--3{grid-template-columns:repeat(2,1fr)}
+  .grid--2,.grid--3{grid-template-columns:repeat(2,1fr)}
   .grid--4{grid-template-columns:repeat(2,1fr)}
   .approach{grid-template-columns:1fr;gap:32px}
   .stats__inner{grid-template-columns:1fr;gap:24px}
   .nav__links{display:none}
 }
 @media(max-width:560px){
-  .grid--3,.grid--4{grid-template-columns:1fr}
+  .grid--2,.grid--3,.grid--4{grid-template-columns:1fr}
   .section{padding:64px 0}
   .product-card{flex-direction:column;align-items:flex-start;gap:16px;padding:24px}
 }
