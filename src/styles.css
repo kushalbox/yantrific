@@ -9,15 +9,15 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 
-.anim-fade{opacity:0;transition:opacity .8s ease}
+.anim-fade{opacity:1;transition:opacity .8s ease}
 .anim-fade.in{opacity:1}
-.anim-up{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
-.anim-up.in{opacity:1;transform:translateY(0)}
-.anim-up-fast{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
-.anim-up-fast.in{opacity:1;transform:translateY(0)}
+.anim-up{transform:translateY(36px);transition:transform .7s ease,opacity .7s ease}
+.anim-up.in{transform:translateY(0);opacity:1}
+.anim-up-fast{transform:translateY(24px);transition:transform .5s ease,opacity .5s ease}
+.anim-up-fast.in{transform:translateY(0);opacity:1}
 
-.anim-stag > *{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
-.anim-stag > *.in{opacity:1;transform:translateY(0)}
+.anim-stag > *{transform:translateY(24px);transition:transform .5s ease,opacity .5s ease}
+.anim-stag > *.in{transform:translateY(0);opacity:1}
 .anim-stag > *:nth-child(1){transition-delay:0s}
 .anim-stag > *:nth-child(2){transition-delay:.1s}
 .anim-stag > *:nth-child(3){transition-delay:.2s}
