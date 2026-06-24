@@ -53,7 +53,7 @@ function Hero() {
     <section className="hero" id="top">
       <div className="hero__inner">
         <span className="eyebrow">AI Consulting & Products</span>
-        <h1 className="hero__title">Production AI,<br />delivered.</h1>
+        <h1 className="hero__title">AI that ships.</h1>
         <p className="hero__sub">AI agents, RAG systems, and products. Strategy through deployment for startups and enterprises.</p>
         <div className="hero__cta">
           <a className="btn btn--primary btn--lg" href="#services">Explore services</a>
