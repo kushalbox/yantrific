@@ -7,6 +7,7 @@ const SERVICES = [
   { n: "04", t: "Data & AI Infrastructure", d: "Data pipelines, vector stores, and MLOps foundations that make AI reliable, observable, and cost-efficient at scale." },
   { n: "05", t: "Responsible AI & Governance", d: "Model evaluation, bias auditing, explainability, and regulatory alignment (e.g., EU AI Act). Governance that lets you ship with confidence." },
   { n: "06", t: "AI Enablement & Operations", d: "Team upskilling, centre-of-excellence setup, monitoring, and retraining so capability persists after we hand over." },
+  { n: "\u2b50", t: "Lalmohar", d: "Our own legal intelligence platform. Bilingual AI that searches Nepali judgments and statutes, reads full text, and answers with sources. Try it at lalmohar.com.", product: true },
 ];
 
 const STATS = [
@@ -46,6 +47,7 @@ function Nav() {
           <a href="#approach">Approach</a>
           <a href="#industries">Industries</a>
           <a href="#faq">FAQ</a>
+          <a href="https://lalmohar.com" target="_blank" rel="noopener">Lalmohar</a>
         </nav>
         <a className="btn btn--sm" href="#contact">Get in touch</a>
       </div>
@@ -57,12 +59,12 @@ function Hero() {
   return (
     <section className="hero" id="top">
       <div className="hero__inner">
-        <span className="eyebrow">AI Consulting</span>
+        <span className="eyebrow">AI Consulting &amp; Products</span>
         <h1 className="hero__title">Artificial intelligence,<br />delivered into production.</h1>
-        <p className="hero__sub">Yantrific helps organizations, from fast-moving startups to large enterprises, move AI from slide decks and proofs-of-concept into production systems that deliver measurable results, built responsibly and owned by your team.</p>
+        <p className="hero__sub">Yantrific builds custom AI systems for ambitious teams. We also built Lalmohar, a bilingual legal intelligence platform that searches Nepali precedents and statutes to answer legal questions with cited sources.</p>
         <div className="hero__cta">
           <a className="btn btn--primary btn--lg" href="#contact">Start a conversation</a>
-          <a className="btn btn--ghost btn--lg" href="#approach">See how we work</a>
+          <a className="btn btn--ghost btn--lg" href="https://lalmohar.com" target="_blank" rel="noopener">Try Lalmohar</a>
         </div>
       </div>
     </section>
@@ -95,8 +97,8 @@ function Services() {
         </div>
         <div className="grid grid--3">
           {SERVICES.map((s) => (
-            <article className="card" key={s.n}>
-              <div className="card__n">{s.n}</div>
+            <article className={"card" + (s.product ? " card--product" : "")} key={s.n}>
+              <div className={"card__n" + (s.product ? " card__n--product" : "")}>{s.n}</div>
               <h3>{s.t}</h3>
               <p>{s.d}</p>
             </article>
@@ -180,7 +182,7 @@ function Contact() {
       <div className="wrap wrap--narrow contact__inner">
         <span className="eyebrow eyebrow--light">Contact</span>
         <h2>Let's build something durable.</h2>
-        <p className="contact__sub">Tell us where you are and where you need to be. We'll tell you honestly whether we can help.</p>
+        <p className="contact__sub">Tell us where you are and where you need to be. We'll tell you honestly whether we can help. Or try our product, Lalmohar, at <a href="https://lalmohar.com" target="_blank" rel="noopener" style={{color:"#9fb4e6",textDecoration:"underline"}}>lalmohar.com</a>.</p>
         <a className="btn btn--primary btn--lg" href="mailto:contact@yantrific.com">contact@yantrific.com</a>
         <p className="contact__loc">Jawlakhel, Lalitpur, Nepal · Working with teams across South Asia &amp; beyond</p>
       </div>
@@ -193,7 +195,7 @@ function Footer() {
     <footer className="footer">
       <div className="wrap footer__inner">
         <img className="footer__logo" src={LOGO_SRC} alt="Yantrific" />
-        <p className="footer__copy">© 2026 Yantrific · AI for ambitious teams, from startups to enterprises.</p>
+        <p className="footer__copy">© 2026 Yantrific · <a href="https://lalmohar.com" target="_blank" rel="noopener" style={{color:"#9fb4e6",textDecoration:"underline"}}>Lalmohar</a> · AI for ambitious teams, from startups to enterprises.</p>
       </div>
     </footer>
   );
