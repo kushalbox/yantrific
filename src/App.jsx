@@ -64,7 +64,7 @@ function Hero() {
       <div className="hero__inner">
         <span className="eyebrow">AI Consulting &amp; Products</span>
         <h1 className="hero__title">Artificial intelligence,<br />delivered into production.</h1>
-        <p className="hero__sub">Yantrific operates two verticals: AI consulting and products. Lalmohar is an LLM-powered legal research and documentation platform for Nepal, built for advocates, law firms, and legal professionals.</p>
+        <p className="hero__sub">We help organizations build and deploy AI systems that work. From strategy to implementation, for startups and enterprises.</p>
         <div className="hero__cta">
           <a className="btn btn--primary btn--lg" href="#services">Explore services</a>
           <a className="btn btn--ghost btn--lg" href="https://lalmohar.com" target="_blank" rel="noopener">Try Lalmohar</a>
