@@ -1,6 +1,7 @@
 import { useParams, Navigate, Link } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import useInView from '../hooks/useInView';
 
 const INDUSTRIES = {
   "financial-services": {

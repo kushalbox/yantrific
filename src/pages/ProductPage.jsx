@@ -1,5 +1,6 @@
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import useInView from '../hooks/useInView';
 
 const PRODUCT = {
   t: "Lalmohar",

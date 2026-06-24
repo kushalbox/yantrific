@@ -1,6 +1,12 @@
 import { useParams, Navigate, Link } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import useInView from '../hooks/useInView';
+
+function Animate({ children, cls = "anim-up", ...props }) {
+  const [ref, inView] = useInView();
+  return <div ref={ref} className={(props.className || "") + " " + cls + (inView ? " in" : "")} {...props}>{children}</div>;
+}
 
 const SERVICES = {
   "ai-strategy-roadmapping": {
@@ -126,14 +132,14 @@ function ServicePage() {
               <h2>Capabilities</h2>
               <p className="section__lead">What we deliver under this engagement.</p>
             </div>
-            <div className="grid grid--2">
+            <Animate className="grid grid--2" cls="">
               {s.capabilities.map((c, i) => (
-                <article className="card" key={i}>
+                <article className="card anim-up-fast" key={i}>
                   <h3>{c.t}</h3>
                   <p>{c.d}</p>
                 </article>
               ))}
-            </div>
+            </Animate>
           </div>
         </section>
 
@@ -143,14 +149,16 @@ function ServicePage() {
               <h2>Outcomes</h2>
               <p className="section__lead">What you can expect by the time we hand over.</p>
             </div>
-            <div className="outcomes">
-              {s.outcomes.map((o, i) => (
-                <div className="outcome" key={i}>
-                  <span className="outcome__icon">{i + 1}</span>
-                  <p>{o}</p>
-                </div>
-              ))}
-            </div>
+            <Animate cls="anim-up-fast">
+              <div className="outcomes">
+                {s.outcomes.map((o, i) => (
+                  <div className="outcome" key={i}>
+                    <span className="outcome__icon">{i + 1}</span>
+                    <p>{o}</p>
+                  </div>
+                ))}
+              </div>
+            </Animate>
           </div>
         </section>
 
@@ -159,15 +167,15 @@ function ServicePage() {
             <div className="section__head">
               <h2>Related services</h2>
             </div>
-            <div className="grid grid--3">
+            <Animate className="grid grid--3" cls="">
               {ORDERED.filter((x) => x.n !== s.n).slice(0, 3).map((r) => (
-                <Link to={"/services/" + r.slug} className="card" key={r.n}>
+                <Link to={"/services/" + r.slug} className="card anim-up-fast" key={r.n}>
                   <div className="card__n">{r.n}</div>
                   <h3>{r.t}</h3>
                   <p>{r.d}</p>
                 </Link>
               ))}
-            </div>
+            </Animate>
           </div>
         </section>
 
