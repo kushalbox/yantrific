@@ -3,9 +3,9 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import useInView from '../hooks/useInView';
 
-function Animate({ children, cls = "anim-up", ...props }) {
+function Animate({ children, cls = "anim-up", className: cn, ...props }) {
   const [ref, inView] = useInView();
-  return <div ref={ref} className={(props.className || "") + " " + cls + (inView ? " in" : "")} {...props}>{children}</div>;
+  return <div ref={ref} className={(cn || "") + " " + cls + (inView ? " in" : "")} {...props}>{children}</div>;
 }
 
 const SERVICES = {

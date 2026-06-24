@@ -49,9 +49,9 @@ const FAQS = [
   { q: "What does a first engagement look like?", a: "A short diagnostic to find the highest-value use case, then a focused 90-day pilot with measurable KPIs." },
 ];
 
-function Animate({ children, cls = "anim-up", as: Tag = "div", ...props }) {
+function Animate({ children, cls = "anim-up", as: Tag = "div", className: cn, ...props }) {
   const [ref, inView] = useInView();
-  return <Tag ref={ref} className={(props.className || "") + " " + cls + (inView ? " in" : "")} {...props}>{children}</Tag>;
+  return <Tag ref={ref} className={(cn || "") + " " + cls + (inView ? " in" : "")} {...props}>{children}</Tag>;
 }
 
 function Hero() {
