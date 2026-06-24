@@ -201,7 +201,7 @@ function ContactSection() {
       <div className="wrap wrap--narrow contact__inner">
         <span className="eyebrow eyebrow--light">Contact</span>
         <h2>Let's build something durable.</h2>
-        <p className="contact__sub">Tell us where you are and where you need to be. We'll tell you honestly whether we can help. Or try our product, Lalmohar, at <a href="https://lalmohar.com" target="_blank" rel="noopener" style={{color:"#9fb4e6",textDecoration:"underline"}}>lalmohar.com</a>.</p>
+        <p className="contact__sub">Tell us where you are and where you need to be. We'll tell you honestly whether we can help.</p>
         <a className="btn btn--primary btn--lg" href="mailto:contact@yantrific.com">contact@yantrific.com</a>
         <p className="contact__loc">Jawlakhel, Lalitpur, Nepal &middot; Working with teams across South Asia &amp; beyond</p>
       </div>
