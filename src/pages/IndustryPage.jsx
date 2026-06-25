@@ -178,6 +178,8 @@ function IndustryPage() {
       <Nav />
       <main>
         <section className="page-hero">
+          <div className="shape shape--bl shape--tl" />
+          <div className="shape shape--or shape--br" />
           <div className="wrap">
             <span className="eyebrow">Industry</span>
             <h1 className="page-hero__title">{ind.t}</h1>

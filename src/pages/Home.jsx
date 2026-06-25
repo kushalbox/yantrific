@@ -49,6 +49,8 @@ const FAQS = [
 function Hero() {
   return (
     <section className="hero" id="top">
+      <div className="shape shape--bl shape--tl" />
+      <div className="shape shape--or shape--br" />
       <div className="hero__inner">
         <span className="eyebrow">AI Consulting & Products</span>
         <h1 className="hero__title">AI that ships.</h1>
@@ -80,6 +82,8 @@ function Stats() {
 function ServicesSection() {
   return (
     <section className="section" id="services">
+      <div className="shape shape--sm shape--tr" />
+      <div className="shape shape--or shape--bl" />
       <div className="wrap">
         <div className="section__head a-up">
           <span className="eyebrow">What we do</span>
@@ -156,6 +160,7 @@ function ApproachSection() {
 function IndustriesSection() {
   return (
     <section className="section" id="industries">
+      <div className="shape shape--bl shape--tr" />
       <div className="wrap">
         <div className="section__head a-up">
           <span className="eyebrow">Where we work</span>
@@ -200,6 +205,7 @@ function FAQSection() {
 function ContactSection() {
   return (
     <section className="section contact" id="contact">
+      <div className="shape shape--bl shape--tl" style={{background:"radial-gradient(circle,rgba(255,255,255,.04),transparent 70%)",width:"400px",height:"400px"}} />
       <div className="wrap wrap--narrow contact__inner a-up">
         <span className="eyebrow eyebrow--light">Contact</span>
         <h2>Let's build something durable.</h2>

@@ -21,6 +21,8 @@ function ProductPage() {
       <Nav />
       <main>
         <section className="page-hero page-hero--product">
+          <div className="shape shape--bl shape--tl" />
+          <div className="shape shape--or shape--br" />
           <div className="wrap">
             <span className="eyebrow">Product</span>
             <h1 className="page-hero__title">Lalmohar</h1>

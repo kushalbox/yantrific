@@ -112,6 +112,8 @@ function ServicePage() {
       <Nav />
       <main>
         <section className="page-hero">
+          <div className="shape shape--bl shape--tl" />
+          <div className="shape shape--or shape--br" />
           <div className="wrap">
             <span className="eyebrow">Service {s.n}</span>
             <h1 className="page-hero__title">{s.t}</h1>
@@ -121,6 +123,7 @@ function ServicePage() {
         </section>
 
         <section className="section">
+          <div className="shape shape--sm shape--tr" />
           <div className="wrap">
             <div className="section__head a-up">
               <h2>Capabilities</h2>
