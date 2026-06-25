@@ -14,10 +14,7 @@ function Nav() {
   return (
     <header className="nav">
       <div className="nav__inner">
-        <Link className="nav__brand" to="/">
-          <img className="nav__icon" src="/y-icon.png" alt="" />
-          <span className="nav__wordmark">Yantrific</span>
-        </Link>
+        <Link className="nav__brand" to="/"><img src="/logo.png" alt="Yantrific" /></Link>
         <nav className="nav__links">
           <Link to="/#services" onClick={scrollTo('services')}>Services</Link>
           <Link to="/#product" onClick={scrollTo('product')}>Products</Link>
