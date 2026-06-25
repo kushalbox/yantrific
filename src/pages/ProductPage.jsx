@@ -1,6 +1,5 @@
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import useInView from '../hooks/useInView';
 
 const PRODUCT = {
   t: "Lalmohar",
@@ -35,11 +34,11 @@ function ProductPage() {
 
         <section className="section">
           <div className="wrap">
-            <div className="section__head">
+            <div className="section__head a-up">
               <h2>Features</h2>
               <p className="section__lead">Built for the way legal professionals actually work.</p>
             </div>
-            <div className="grid grid--2">
+            <div className="grid grid--2 a-stag">
               {p.features.map((f, i) => (
                 <article className="card" key={i}>
                   <h3>{f.t}</h3>
@@ -52,12 +51,14 @@ function ProductPage() {
 
         <section className="section section--alt">
           <div className="wrap wrap--narrow">
-            <div className="section__head">
+            <div className="section__head a-up">
               <h2>About Lalmohar</h2>
             </div>
-            <div className="about-text">
-              <p>{p.about}</p>
-              <p style={{marginTop: "16px"}}>Lalmohar is one product from Yantrific. We also build custom AI systems, agentic workflows, and infrastructure for startups and enterprises across South Asia and beyond.</p>
+            <div className="a-up-sm">
+              <div className="about-text">
+                <p>{p.about}</p>
+                <p style={{marginTop: "16px"}}>Lalmohar is one product from Yantrific. We also build custom AI systems, agentic workflows, and infrastructure for startups and enterprises across South Asia and beyond.</p>
+              </div>
             </div>
           </div>
         </section>

@@ -1,12 +1,6 @@
 import { useParams, Navigate, Link } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import useInView from '../hooks/useInView';
-
-function Animate({ children, cls = "anim-up", className: cn, ...props }) {
-  const [ref, inView] = useInView();
-  return <div ref={ref} className={(cn || "") + " " + cls + (inView ? " in" : "")} {...props}>{children}</div>;
-}
 
 const SERVICES = {
   "ai-strategy-roadmapping": {
@@ -128,28 +122,28 @@ function ServicePage() {
 
         <section className="section">
           <div className="wrap">
-            <div className="section__head">
+            <div className="section__head a-up">
               <h2>Capabilities</h2>
               <p className="section__lead">What we deliver under this engagement.</p>
             </div>
-            <Animate className="grid grid--2" cls="">
+            <div className="grid grid--2 a-stag">
               {s.capabilities.map((c, i) => (
-                <article className="card anim-up-fast" key={i}>
+                <article className="card" key={i}>
                   <h3>{c.t}</h3>
                   <p>{c.d}</p>
                 </article>
               ))}
-            </Animate>
+            </div>
           </div>
         </section>
 
         <section className="section section--alt">
           <div className="wrap">
-            <div className="section__head">
+            <div className="section__head a-up">
               <h2>Outcomes</h2>
               <p className="section__lead">What you can expect by the time we hand over.</p>
             </div>
-            <Animate cls="anim-up-fast">
+            <div className="a-up-sm">
               <div className="outcomes">
                 {s.outcomes.map((o, i) => (
                   <div className="outcome" key={i}>
@@ -158,24 +152,24 @@ function ServicePage() {
                   </div>
                 ))}
               </div>
-            </Animate>
+            </div>
           </div>
         </section>
 
         <section className="section">
           <div className="wrap">
-            <div className="section__head">
+            <div className="section__head a-up">
               <h2>Related services</h2>
             </div>
-            <Animate className="grid grid--3" cls="">
+            <div className="grid grid--3 a-stag">
               {ORDERED.filter((x) => x.n !== s.n).slice(0, 3).map((r) => (
-                <Link to={"/services/" + r.slug} className="card anim-up-fast" key={r.n}>
+                <Link to={"/services/" + r.slug} className="card" key={r.n}>
                   <div className="card__n">{r.n}</div>
                   <h3>{r.t}</h3>
                   <p>{r.d}</p>
                 </Link>
               ))}
-            </Animate>
+            </div>
           </div>
         </section>
 

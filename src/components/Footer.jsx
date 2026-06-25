@@ -1,10 +1,11 @@
-const LOGO_SRC = '/logo.png';
-
 function Footer() {
   return (
     <footer className="footer">
       <div className="wrap footer__inner">
-        <img className="footer__logo" src={LOGO_SRC} alt="Yantrific" />
+        <div className="footer__brand">
+          <img className="footer__icon" src="/y-icon.png" alt="" />
+          <span className="footer__wordmark">Yantrific</span>
+        </div>
         <p className="footer__copy">&copy; 2026 Yantrific &middot; AI for ambitious teams, from startups to enterprises.</p>
       </div>
     </footer>

@@ -1,9 +1,6 @@
 import { Link } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import useInView from '../hooks/useInView';
-
-const LOGO_SRC = '/logo.png';
 
 const SERVICES = [
   { n: "01", t: "AI Strategy & Roadmapping", d: "Opportunity audit, use-case prioritisation by impact vs. effort, build-vs-buy analysis, and a funded, board-ready roadmap with clear KPIs and ownership.", slug: "ai-strategy-roadmapping" },
@@ -49,11 +46,6 @@ const FAQS = [
   { q: "What does a first engagement look like?", a: "A short diagnostic to find the highest-value use case, then a focused 90-day pilot with measurable KPIs." },
 ];
 
-function Animate({ children, cls = "anim-up", as: Tag = "div", className: cn, ...props }) {
-  const [ref, inView] = useInView();
-  return <Tag ref={ref} className={(cn || "") + " " + cls + (inView ? " in" : "")} {...props}>{children}</Tag>;
-}
-
 function Hero() {
   return (
     <section className="hero" id="top">
@@ -73,12 +65,12 @@ function Hero() {
 function Stats() {
   return (
     <section className="stats">
-      <div className="stats__inner anim-stag">
+      <div className="stats__inner a-stag">
         {STATS.map((s, i) => (
-          <Animate as="div" className="stat" cls="anim-up-fast" key={i}>
+          <div className="stat" key={i}>
             <div className="stat__v">{s.v}</div>
             <div className="stat__c">{s.c}</div>
-          </Animate>
+          </div>
         ))}
       </div>
     </section>
@@ -89,20 +81,20 @@ function ServicesSection() {
   return (
     <section className="section" id="services">
       <div className="wrap">
-        <Animate className="section__head">
+        <div className="section__head a-up">
           <span className="eyebrow">What we do</span>
           <h2>From advice to production, and everything between.</h2>
           <p className="section__lead">Six capabilities spanning strategy, engineering, and operations.</p>
-        </Animate>
-        <Animate className="grid grid--3 anim-stag" cls="">
+        </div>
+        <div className="grid grid--3 a-stag">
           {SERVICES.map((s) => (
-            <Link to={"/services/" + s.slug} className="card anim-up-fast" key={s.n}>
+            <Link to={"/services/" + s.slug} className="card" key={s.n}>
               <div className="card__n">{s.n}</div>
               <h3>{s.t}</h3>
               <p>{s.d}</p>
             </Link>
           ))}
-        </Animate>
+        </div>
       </div>
     </section>
   );
@@ -112,12 +104,12 @@ function ProductSection() {
   return (
     <section className="section section--alt" id="product">
       <div className="wrap">
-        <Animate className="section__head">
+        <div className="section__head a-up">
           <span className="eyebrow">Our Product</span>
           <h2>Built by us.</h2>
           <p className="section__lead">Lalmohar is our LLM-powered legal research and documentation platform for Nepal. We built it for real. We ship it ourselves.</p>
-        </Animate>
-        <Animate cls="anim-up-fast">
+        </div>
+        <div className="a-up-sm">
           <div className="product-grid">
             {PRODUCTS.map((p) => (
               <a href={p.url} target="_blank" rel="noopener" className="product-card">
@@ -130,7 +122,7 @@ function ProductSection() {
               </a>
             ))}
           </div>
-        </Animate>
+        </div>
       </div>
     </section>
   );
@@ -140,14 +132,14 @@ function ApproachSection() {
   return (
     <section className="section" id="approach">
       <div className="wrap approach">
-        <Animate className="approach__intro">
+        <div className="approach__intro a-up">
           <span className="eyebrow">How we work</span>
           <h2>Built to outlast the engagement.</h2>
           <blockquote className="pull">&ldquo;AI is not a technology project. It is a strategy project that happens to involve software.&rdquo;</blockquote>
-        </Animate>
-        <Animate className="approach__list anim-stag" cls="">
+        </div>
+        <div className="approach__list a-stag">
           {APPROACH.map((a, i) => (
-            <div className="step anim-up-fast" key={i}>
+            <div className="step" key={i}>
               <div className="step__n">{String(i + 1).padStart(2, "0")}</div>
               <div>
                 <h3>{a.t}</h3>
@@ -155,7 +147,7 @@ function ApproachSection() {
               </div>
             </div>
           ))}
-        </Animate>
+        </div>
       </div>
     </section>
   );
@@ -165,18 +157,18 @@ function IndustriesSection() {
   return (
     <section className="section" id="industries">
       <div className="wrap">
-        <Animate className="section__head">
+        <div className="section__head a-up">
           <span className="eyebrow">Where we work</span>
           <h2>Concrete plays, not generic AI.</h2>
-        </Animate>
-        <Animate className="grid grid--4 anim-stag" cls="">
+        </div>
+        <div className="grid grid--4 a-stag">
           {INDUSTRIES.map((x) => (
-            <Link to={"/industries/" + x.slug} className="tile anim-up-fast" key={x.slug}>
+            <Link to={"/industries/" + x.slug} className="tile" key={x.slug}>
               <h3>{x.t}</h3>
               <p>{x.d}</p>
             </Link>
           ))}
-        </Animate>
+        </div>
       </div>
     </section>
   );
@@ -186,11 +178,11 @@ function FAQSection() {
   return (
     <section className="section section--alt" id="faq">
       <div className="wrap wrap--narrow">
-        <Animate className="section__head">
+        <div className="section__head a-up">
           <span className="eyebrow">FAQ</span>
           <h2>Questions, answered.</h2>
-        </Animate>
-        <Animate cls="anim-up-fast">
+        </div>
+        <div className="a-up-sm">
           <div className="faq">
             {FAQS.map((f, i) => (
               <details className="faq__item" key={i}>
@@ -199,7 +191,7 @@ function FAQSection() {
               </details>
             ))}
           </div>
-        </Animate>
+        </div>
       </div>
     </section>
   );
@@ -208,13 +200,13 @@ function FAQSection() {
 function ContactSection() {
   return (
     <section className="section contact" id="contact">
-      <Animate className="wrap wrap--narrow contact__inner">
+      <div className="wrap wrap--narrow contact__inner a-up">
         <span className="eyebrow eyebrow--light">Contact</span>
         <h2>Let's build something durable.</h2>
         <p className="contact__sub">Tell us where you are and where you need to be. We'll tell you honestly whether we can help.</p>
         <a className="btn btn--primary btn--lg" href="mailto:contact@yantrific.com">contact@yantrific.com</a>
         <p className="contact__loc">Jawlakhel, Lalitpur, Nepal &middot; Working with teams across South Asia &amp; beyond</p>
-      </Animate>
+      </div>
     </section>
   );
 }

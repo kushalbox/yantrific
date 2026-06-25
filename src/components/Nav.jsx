@@ -1,7 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
 
-const LOGO_SRC = '/logo.png';
-
 function Nav() {
   const { pathname } = useLocation();
   const isHome = pathname === '/';
@@ -16,7 +14,10 @@ function Nav() {
   return (
     <header className="nav">
       <div className="nav__inner">
-        <Link className="nav__brand" to="/"><img src={LOGO_SRC} alt="Yantrific" /></Link>
+        <Link className="nav__brand" to="/">
+          <img className="nav__icon" src="/y-icon.png" alt="" />
+          <span className="nav__wordmark">Yantrific</span>
+        </Link>
         <nav className="nav__links">
           <Link to="/#services" onClick={scrollTo('services')}>Services</Link>
           <Link to="/#product" onClick={scrollTo('product')}>Products</Link>

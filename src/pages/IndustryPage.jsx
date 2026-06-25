@@ -1,7 +1,6 @@
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import useInView from '../hooks/useInView';
 
 const INDUSTRIES = {
   "financial-services": {
@@ -189,11 +188,11 @@ function IndustryPage() {
 
         <section className="section">
           <div className="wrap">
-            <div className="section__head">
+            <div className="section__head a-up">
               <span className="eyebrow">The challenges</span>
               <h2>What makes {ind.t} hard.</h2>
             </div>
-            <div className="challenges">
+            <div className="challenges a-stag">
               {ind.challenges.map((c, i) => (
                 <div className="challenge" key={i}>
                   <span className="challenge__n">{String(i + 1).padStart(2, "0")}</span>
@@ -206,11 +205,11 @@ function IndustryPage() {
 
         <section className="section section--alt">
           <div className="wrap">
-            <div className="section__head">
+            <div className="section__head a-up">
               <span className="eyebrow">How we help</span>
               <h2>AI solutions for {ind.t}.</h2>
             </div>
-            <div className="grid grid--2">
+            <div className="grid grid--2 a-stag">
               {ind.solutions.map((s, i) => (
                 <article className="card" key={i}>
                   <h3>{s.t}</h3>
@@ -223,11 +222,11 @@ function IndustryPage() {
 
         <section className="section">
           <div className="wrap">
-            <div className="section__head">
+            <div className="section__head a-up">
               <h2>Real results</h2>
               <p className="section__lead">Specific outcomes from real engagements in this industry.</p>
             </div>
-            <div className="grid grid--2">
+            <div className="grid grid--2 a-stag">
               {ind.usecases.map((u, i) => (
                 <article className="result-card" key={i}>
                   <h3>{u.t}</h3>
